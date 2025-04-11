@@ -11,12 +11,11 @@ export default function ToggleTabs() {
       <TouchableOpacity
         style={styles.tab}
         onPress={() => {
-          console.log('Collections Tab Pressed');
           setActiveTab('collections');
         }}
       >
         <Image
-        source={require('../assets/images/icon.png')} 
+        source={require('../assets/images/coll.png')} 
         style={[
           styles.coll,
           { tintColor: activeTab === 'collections' ? '#00FFD1' : '#666' },
@@ -37,7 +36,6 @@ export default function ToggleTabs() {
       <TouchableOpacity
         style={styles.tab}
         onPress={() => {
-          console.log('Manage Tab Pressed');
           setActiveTab('tags');
         }}
       >
