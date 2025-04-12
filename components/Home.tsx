@@ -1,9 +1,12 @@
-import { Animated, StyleSheet, View, Easing, ImageBackground, ScrollView } from 'react-native';
+import { Animated, StyleSheet, View, Easing, ImageBackground, Dimensions } from 'react-native';
 import { useEffect, useRef } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
-import Profile from './Profile';
-import ToggleTabs from './ToggleTabs';
+import Profile from './Profile';  
 
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
+
+const {height, width} = Dimensions.get("window");
 export default function Home() {
   const slideAnim = useRef(new Animated.Value(0)).current;
 
@@ -42,7 +45,7 @@ export default function Home() {
         style={styles.bg1}
       >
         <ImageBackground
-          source={require('@/assets/images/bg1.png')}
+          source={require('../assets/images/bg1.png')}
           style={styles.image}
           resizeMode="contain"
         />
@@ -62,16 +65,14 @@ export default function Home() {
           style={StyleSheet.absoluteFill}
         />
         <ImageBackground
-          source={require('@/assets/images/bg2.png')}
+          source={require('../assets/images/bg2.png')}
           style={styles.image}
           resizeMode="contain"
         />
       </Animated.View>
-      <Profile />      
+      <Profile />
     </View>
-    <View>
-    <ToggleTabs />
-    </View>
+    
     </View>
     
   );
@@ -80,38 +81,37 @@ export default function Home() {
 const styles = StyleSheet.create({
     app: {
        backgroundColor: 'rgba(16, 18, 22, 1)',
+       height: hp(40),
+    width: wp(100),
     },
   container: {
+
     flex: 1,
-    position: 'absolute',
-    top: 0,
-    left: 0,
+    height: hp(100),
+    width: wp(100),
     justifyContent: 'center',
     alignItems: 'center',
-    width: 400,
-    height: 366.6,
-    padding: 50,
+    overflow: 'hidden',
+    padding: 0,
     backgroundColor: '#27024D', 
   },
   bg1: {
     ...StyleSheet.absoluteFillObject,
     zIndex: -1,
-    objectFit: 'contain',
-    justifyContent: 'center',
+    objectFit: 'cover',
     opacity: 0.2,
-
+    
   },
   bg2: {
     ...StyleSheet.absoluteFillObject,
     zIndex: -2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    objectFit: 'contain',
+    objectFit: 'cover',
     opacity: 0.3,
+  
   },
   image: {
-    width: 400,
-      height: 366.6,
+    width: wp(100),
+      
   }
 });
 

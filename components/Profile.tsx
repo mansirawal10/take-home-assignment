@@ -1,5 +1,8 @@
-import { View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { View, Image, StyleSheet, TouchableOpacity, Text, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
+const {height, width} = Dimensions.get("window");
 
 export default function Profile() {
     return (
@@ -31,7 +34,7 @@ export default function Profile() {
                         <Text style={styles.username}>@theo_from_hsr</Text>
                         <Image
                             source={require('../assets/images/Check.png')}
-                            style={styles.flag}
+                            style={styles.check}
                         />
                     </View>
                     <View style={styles.locationRow}>
@@ -71,29 +74,26 @@ export default function Profile() {
 
 const styles = StyleSheet.create({
     row: {
-        width: 390,
-        height: 366.6,
+        width: wp(100),
+        height: hp(10),
         position: 'absolute',
         left: 0,
         top: 20,
-        paddingHorizontal: 16,
-        paddingVertical: 8,
+
     },
     profile: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
-        width: '100%',
+        padding: 25,
+        width: wp(100),
+        height: hp(60),
     },
     image: {
-        width: 96,
-        height: 96,
-        borderRadius: 12,
-        borderWidth: 5,
-        borderColor: 'rgba(239, 216, 76, 1)',
+        marginTop: 0,
     },
     logo: {
         flexDirection: 'row',
+        padding: 15,
         gap: 16,
     },
     share: {
@@ -105,6 +105,9 @@ const styles = StyleSheet.create({
         height: 24,
     },
     userInfo: {
+        position: 'absolute',
+        left: 30,
+        top:150,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -131,6 +134,10 @@ const styles = StyleSheet.create({
         height: 15,
         marginRight: 5,
     },
+    check: {
+        paddingTop: 15,
+        marginRight: 5,
+    },
     location: {
         color: 'white',
         fontSize: 14,
@@ -149,7 +156,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         color: 'rgba(163, 163, 163, 1)',
-        paddingVertical: 10,
+        paddingVertical: 20,
         marginHorizontal: 20,
         marginBottom: 20,
         zIndex: 1, // Ensure button is above background
@@ -157,32 +164,37 @@ const styles = StyleSheet.create({
     editProfileText: {
         color: 'rgba(163, 163, 163, 1)',
         fontWeight: 'bold',
-        marginRight: 5,
+        marginLeft: 50,
         borderBottomWidth: 3,
         borderStyle: 'dashed',
         borderColor: 'rgba(163, 163, 163, 1)',
     },
     editProfileIcon: {
-        marginLeft: 5,
+        marginLeft: 10,
+        color:'rgba(163, 163, 163, 1)',
     },
     followingContainer: {
+        position: 'absolute',
+        left: 30,
+        top: 220,
         flexDirection: 'column',
         paddingHorizontal: 20,
         marginBottom: 20,
         zIndex: 1,
+        width: wp(100), 
         
     },
     followingItem: {
         display: 'flex',
         flexDirection: 'row',
         position: 'absolute',
-        top: 90,
+        top: 60,
         left: 0,
         
     },
     followingCount: {
         color: 'white',
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: 'bold',
         
     },
@@ -190,7 +202,7 @@ const styles = StyleSheet.create({
         color: 'gray',
         fontSize: 14,
         position: 'absolute',
-        top: 110,
+        top: 90,
         left: 0,
     },
     content: {

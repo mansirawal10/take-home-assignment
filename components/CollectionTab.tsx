@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
-
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+const {height, width} = Dimensions.get("window");
 
 export default function Collection() {
 
@@ -29,30 +30,32 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         flexWrap: 'wrap',
         gap: 4,
-        width: 400,
+        width: wp(100),
         height: 520.4,
         backgroundColor: 'rgba(16, 18, 22, 1)',
-        position: 'absolute',
-        top: 55,
-        left: 0,
+        
     },
     Liked:{
         paddingTop: 15,
-        paddingLeft: 10,
+        paddingLeft: 18,
         
     },
     Save:{
         paddingTop: 15,
-        paddingRight: 10,
+        paddingRight: 18,
     },
     Files:{
-        paddingBottom: 80,
-        paddingLeft: 10,
+        paddingTop: 15,
+        paddingBottom: 30,
+        paddingLeft: 18,
     },
     bar: {
         position: 'absolute',
         bottom: 0,
-    },
+        width: wp(100),
+        height: 50, // or however tall your bar is
+        zIndex: 10,
+      },
 
 
 

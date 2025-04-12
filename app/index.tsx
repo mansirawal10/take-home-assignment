@@ -1,17 +1,20 @@
-import App from "../components/Home";
-import { View, StyleSheet } from "react-native";
+import App from "../components/App";
+import { View, StyleSheet, Dimensions } from "react-native";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
+const { height, width } = Dimensions.get("window");
 
 export default function HomeScreen() {
-return <View style={[styles.container, { backgroundColor: 'rgba(16, 18, 22, 1)' }]} >
-    <App />
-</View>
+  return (
+    <View style={styles.screen}>
+      <App />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    container:{
-
-        backgroundColor: 'rgba(16, 18, 22, 1)',
-        width: 390,
-        height: 860,
-    }
-})
+  screen: {
+    flex: 1,
+    backgroundColor: '#101216', // or any dark color to match your theme
+  },
+});

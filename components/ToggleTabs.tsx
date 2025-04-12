@@ -1,117 +1,93 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image, Dimensions, Animated } from 'react-native';
 import Collection from './CollectionTab';
 import ManageTags from './ManagesTab';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
+const { height, width } = Dimensions.get('window');
+
 export default function ToggleTabs() {
   const [activeTab, setActiveTab] = useState('collections');
 
   return (
-    <View style={styles.tabContainer}>
-      {/* Collections Tab */}
-      <TouchableOpacity
-        style={styles.tab}
-        onPress={() => {
-          setActiveTab('collections');
-        }}
-      >
-        <Image
-        source={require('../assets/images/coll.png')} 
-        style={[
-          styles.coll,
-          { tintColor: activeTab === 'collections' ? '#00FFD1' : '#666' },
-        ]}
-         />
-        <Text
-          style={[
-            styles.tabText,
-            { color: activeTab === 'collections' ? '#00FFD1' : '#999' },
-          ]}
-        >
-          COLLECTIONS
-        </Text>
-        {activeTab === 'collections' && <View style={styles.activeLine} />}
-      </TouchableOpacity>
+    <View style={styles.container}>
+      <View style={styles.tabContainer}>
+        {/* Collections Tab */}
+        <TouchableOpacity style={styles.tab} onPress={() => setActiveTab('collections')}>
+          <Image
+            source={require('../assets/images/coll.png')}
+            style={[
+              styles.icon,
+              { tintColor: activeTab === 'collections' ? '#00FFD1' : '#666' },
+            ]}
+          />
+          <Text style={[styles.tabText, { color: activeTab === 'collections' ? '#00FFD1' : '#999' }]}>
+            COLLECTIONS
+          </Text>
+          {activeTab === 'collections' && <View style={styles.activeLine} />}
+        </TouchableOpacity>
 
-      {/* Manage Tags Tab */}
-      <TouchableOpacity
-        style={styles.tab}
-        onPress={() => {
-          setActiveTab('tags');
-        }}
-      >
-         <Image
-        source={require('../assets/images/icon2.png')} 
-        style={[
-          styles.man,
-          { tintColor: activeTab === 'tags' ? '#00FFD1' : '#666' },
-        ]}
-         />
-        <Text
-          style={[
-            styles.tabText,
-            { color: activeTab === 'tags' ? '#00FFD1' : '#999' },
-          ]}
-        >
-          MANAGE TAGS
-        </Text>
-        {activeTab === 'tags' && <View style={styles.activeLine} />}
-      </TouchableOpacity>
-       {/* Content */}
-     {activeTab === 'collections' ? <Collection /> : <ManageTags />}
-     </View>
-   );
- }
-  
+        {/* Manage Tags Tab */}
+        <TouchableOpacity style={styles.tab} onPress={() => setActiveTab('tags')}>
+          <Image
+            source={require('../assets/images/icon2.png')}
+            style={[
+              styles.icon,
+              { tintColor: activeTab === 'tags' ? '#00FFD1' : '#666' },
+            ]}
+          />
+          <Text style={[styles.tabText, { color: activeTab === 'tags' ? '#00FFD1' : '#999' }]}>
+            MANAGE TAGS
+          </Text>
+          {activeTab === 'tags' && <View style={styles.activeLine} />}
+        </TouchableOpacity>
+      </View>
 
-
-
-
-
-
+      {/* Render Tab Content */}
+      <View style={styles.contentArea}>
+        {activeTab === 'collections' ? <Collection /> : <ManageTags />}
+      </View>
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
+  container: {
+    width: wp(100),
+  },
   tabContainer: {
-    display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: 'rgba(11, 11, 11, 1)',
-    paddingVertical: 3,
-    paddingHorizontal: 2,
-    borderBottomWidth: 3,
-    borderBottomColor: 'rgba(64, 64, 64, 1)',
-    width: 400,
-    height: 54.6,
-    position: 'absolute',
-    top: 350,
+    justifyContent: 'space-around',
+    backgroundColor: '#111',
+    paddingVertical: 20,
+    borderBottomColor: '#444',
+    borderBottomWidth: 2,
   },
   tab: {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'center',
+    flexDirection: 'row',
+    gap: 6,
     position: 'relative',
-    gap: 5,
+    paddingBottom: 6,
+  },
+  icon: {
+    width: 20,
+    height: 20,
+    resizeMode: 'contain',
   },
   tabText: {
-    fontSize: 12,
-    marginTop: 2,
+    fontSize: 18,
     fontWeight: '600',
-    letterSpacing: 0.5,
   },
   activeLine: {
-    height: 2,
-    backgroundColor: '#00FFD1',
-    width: '80%',
     position: 'absolute',
     bottom: 0,
+    height: 2,
+    backgroundColor: '#00FFD1',
+    width: '100%',
   },
-  man:{
-
+  contentArea: {
+    backgroundColor: '#101216',
+    paddingVertical: 25,
   },
-  coll:{
-    
-  },
-  
 });
-
